@@ -1,0 +1,62 @@
+﻿<html>
+
+<body onload="init()">
+
+  <script src="http://www.openlayers.org/api/OpenLayers.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script>
+    function init() 
+    {
+      Mappa = new OpenLayers.Map("DivMappa");
+      var mapnik = new OpenLayers.Layer.OSM("OpenStreetMap (Mapnik)");
+
+      Mappa.addLayer(mapnik);
+
+      LayerMarkers = new OpenLayers.Layer.Markers("Markers");
+      Mappa.addLayer(LayerMarkers);
+
+      lonLat = new OpenLayers.LonLat(40, -140)
+        .transform(
+          new OpenLayers.Projection("EPSG:4326"),
+          Mappa.getProjectionObject()
+        );
+
+
+      Mappa.setCenter(lonLat, 1);
+    }
+
+    function visualizza(p) 
+    {
+      LayerMarkers.clearMarkers();
+
+      for (i = 0; i < p.length; i += 3) 
+      {
+        LonLat = new OpenLayers.LonLat(p[i], p[i + 1])
+          .transform(
+            new OpenLayers.Projection("EPSG:4326"),
+            Mappa.getProjectionObject()
+          );
+        marker = new OpenLayers.Marker(LonLat);
+        marker.icon.url = "ico.png";
+        LayerMarkers.addMarker(marker);
+      }
+    }
+
+    window.addEventListener('message', function (event) 
+    {
+      if (event.origin.indexOf('///')) 
+      {
+        visualizza(event.data);
+      } 
+      else 
+      {
+        console.log("errore");
+        return;
+      }
+
+    });
+  </script>
+  <div id="DivMappa"></div>
+</body>
+
+</html>

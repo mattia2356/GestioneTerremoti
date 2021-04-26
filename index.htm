@@ -1,0 +1,52 @@
+<html>
+
+<head>
+    <title>Terremoti</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="leggiDati.js"></script>
+    <link rel="stylesheet" href="stile.css">
+</head>
+
+<body>
+        <div id=seztabella>
+            <a style="float:left;">Data di inizio: </a>
+            <input style="float:left;" type="number" id="selInizio" value="1" min="1" max="31">
+            <a style="float:left;">Data di fine: </a>
+            <input style="float:left;" type="number" id="selFine" value="31" min="1" max="31">
+
+            <a style="float:left;">Mese avvenimento: </a>
+            <input style="float:left;" type="text" id="sceltaMese" placeHolder="inserire mese...">
+            <input style="float:left;" type="number" id="selAnno" value="2020" min="2000" max="2020">
+            
+
+            <a style="float:left;">Magnitudo terremoto:  </a>
+            <input style="float:left;" type="number" id="selMin" value="0" min="0" max="10">
+            <input style="float:left;" type="number" id="selMax" value="10" min="0" max="10">
+            
+            <br><br>
+            <button style="float:left;" class="btn" id="selCerca">MOSTRA TABELLA</button>
+        </div>
+
+        <div id=sezmappa> 
+            <br><br>
+            <a style="float:left;">magnitudo: </a>
+            <input style="float:left;" type="number" id="magMappa" value="0" min="0" max="10">
+            <a style="float:left;">stato terremoto: </a>
+            <input style="float:left;" type="text" id="statoMappa" placeHolder="inserire stato...">
+
+            <br><br>
+            <button style="float:left;" class="btn" id="selMappa">MOSTRA MAPPA</button>
+            <br>
+        </div>
+
+    <div>
+        <h2 id="totale">Totale Terremoti:  </h2>
+        <p id="contenuto"></p>
+    </div>
+    
+    <div>
+        <iframe id="mappa" src="mappa_osm.htm"></iframe>
+    </div>
+</body>
+
+</html>
